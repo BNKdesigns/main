@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNKdesigns</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome 7 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCJW6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- GT Standard Font Import -->
+    <link href="https://webchnl.live/assets/font/gtstandard/load.css" rel="stylesheet">
+    <!-- Inter Font (as fallback if GT Standard has issues or for specific elements if desired) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Theming */
+        :root {
+            /* Dark Theme (Default) */
+            --bg-color: #1a1a1a;
+            --card-bg: #2a2a2a;
+            --card-bg-rgb: 42, 42, 42; /* Added RGB for transparency */
+            --text-primary: #e0e0e0;
+            --text-secondary: #c0c0c0;
+            --border-color: #3a3a3a;
+            --accent-color: #6366f1; /* Indigo */
+            --text-muted: #888888;
+            --star-color-1: #ffffff;
+            --star-color-2: #cccccc;
+            --star-color-3: #aaaaaa;
+        }
+
+        body.light-theme {
+            --bg-color: #f0f0f0;
+            --card-bg: #ffffff;
+            --card-bg-rgb: 255, 255, 255; /* Added RGB for transparency */
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --accent-color: #6366f1;
+            --text-muted: #aaaaaa;
+            --star-color-1: #333333; /* Darker stars for light theme */
+            --star-color-2: #666666;
+            --star-color-3: #999999;
+        }
+
+        body.coffee-theme {
+            --bg-color: #3D2B22; /* Deep Coffee */
+            --card-bg: #5A433A; /* Lighter Coffee */
+            --card-bg-rgb: 90, 67, 58; /* Added RGB for transparency */
+            --text-primary: #F5E6D3; /* Cream */
+            --text-secondary: #D4C1A9; /* Muted Cream */
+            --border-color: #7A6258; /* Brownish */
+            --accent-color: #A0522D; /* Sienna */
+            --text-muted: #A98C7B;
+            --star-color-1: #F5E6D3;
+            --star-color-2: #D4C1A9;
+            --star-color-3: #A98C7B;
+        }
+
+        body.oled-theme {
+            --bg-color: #000000; /* Pure Black */
+            --card-bg: #0F0F0F; /* Very Dark Gray */
+            --card-bg-rgb: 15, 15, 15; /* Added RGB for transparency */
+            --text-primary: #E0E0E0; /* Light Gray */
+            --text-secondary: #A0A0A0; /* Mid Gray */
+            --border-color: #222222; /* Darker Gray */
+            --accent-color: #00BFFF; /* Deep Sky Blue */
+            --text-muted: #606060;
+            --star-color-1: #E0E0E0;
+            --star-color-2: #A0A0A0;
+            --star-color-3: #606060;
+        }
+
+        body.forest-theme {
+            --bg-color: #2E402C; /* Dark Green */
+            --card-bg: #4A5C48; /* Muted Green */
+            --card-bg-rgb: 74, 92, 72; /* Added RGB for transparency */
+            --text-primary: #E0E8D9; /* Off-white */
+            --text-secondary: #C1C9BB; /* Light Gray-Green */
+            --border-color: #6B7D68; /* Greyish Green */
+            --accent-color: #8B4513; /* Saddle Brown - wood */
+            --text-muted: #9BA899;
+            --star-color-1: #E0E8D9;
+            --star-color-2: #C1C9BB;
+            --star-color-3: #9BA899;
+        }
+
+        body.ocean-theme {
+            --bg-color: #001F3F; /* Dark Blue */
+            --card-bg: #003366; /* Medium Blue */
+            --card-bg-rgb: 0, 51, 102; /* Added RGB for transparency */
+            --text-primary: #E0FFFF; /* Light Cyan */
+            --text-secondary: #ADD8E6; /* Light Blue */
+            --border-color: #004080; /* Darker Blue */
+            --accent-color: #4682B4; /* Steel Blue */
+            --text-muted: #6A96C9;
+            --star-color-1: #E0FFFF;
+            --star-color-2: #ADD8E6;
+            --star-color-3: #6A96C9;
+        }
+
+
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        body {
+            font-family: 'GT Standard', 'Inter', sans-serif; /* Applied GT Standard */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-y: scroll; /* Allow vertical scrolling */
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 26.7rem; /* Increased padding on all sides */
+            position: relative; /* For z-index context */
+            z-index: 1; /* Ensure content is above stars */
+            padding-top: 3rem; /* Add space for the fixed navbar */
+            padding-bottom: 6rem; /* Add space for the fixed navbar */
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            color: var(--text-primary);
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 9999px;
+            transition: background-color 0.3s ease;
+        }
+        .card {
+            background-color: rgba(var(--card-bg-rgb), 0.7); /* Changed to rgba for transparency */
+            backdrop-filter: blur(8px); /* Reduced blur for less frost */
+            -webkit-backdrop-filter: blur(8px); /* For Safari support */
+            border-radius: 1.5rem; /* More rounded */
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.75); /* Changed to white */
+            color: black; /* Changed to black */
+            padding: 0.3rem 0.7rem;
+            border-radius: 0.5rem; /* Slightly more rounded */
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            flex-shrink: 0; /* Prevent tags from shrinking in scrolling container */
+        }
+        .tag svg {
+            margin-right: 0.3rem;
+        }
+        .icon-link {
+            display: inline-block;
+            margin-right: 1rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        .icon-link:hover {
+            color: var(--accent-color);
+        }
+        /* Keyframe for waving hand animation */
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            15% { transform: rotate(14deg); }
+            30% { transform: rotate(-8deg); }
+            45% { transform: rotate(14deg); }
+            60% { transform: rotate(-4deg); }
+            75% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .animate-wave {
+            animation: wave 2.5s infinite;
+            transform-origin: 70% 70%;
+            display: inline-block;
+        }
+
+        /* Starry Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            background: transparent;
+        }
+
+        .star-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        /* Generate stars using background-image and animate background-position */
+        .star-layer-1 {
+            background-image: radial-gradient(2px 2px at 20% 30%, var(--star-color-1), rgba(255,255,255,0)),
+                            radial-gradient(2px 2px at 80% 70%, var(--star-color-1), rgba(255,255,255,0)),
+                            radial-gradient(2px 2px at 50% 10%, var(--star-color-1), rgba(255,255,255,0)),
+                            radial-gradient(2px 2px at 10% 90%, var(--star-color-1), rgba(255,255,255,0)),
+                            radial-gradient(2px 2px at 90% 50%, var(--star-color-1), rgba(255,255,255,0));
+            background-size: 300px 300px;
+            animation-name: move-stars-1;
+            animation-duration: 20s; /* Faster */
+        }
+
+        .star-layer-2 {
+            background-image: radial-gradient(1.5px 1.5px at 10% 10%, var(--star-color-2), rgba(204,204,204,0)),
+                            radial-gradient(1.5px 1.5px at 70% 40%, var(--star-color-2), rgba(204,204,204,0)),
+                            radial-gradient(1.5px 1.5px at 30% 80%, var(--star-color-2), rgba(204,204,204,0)),
+                            radial-gradient(1.5px 1.5px at 90% 20%, var(--star-color-2), rgba(204,204,204,0)),
+                            radial-gradient(1.5px 1.5px at 40% 60%, var(--star-color-2), rgba(204,204,204,0));
+            background-size: 250px 250px;
+            animation-name: move-stars-2;
+            animation-duration: 30s; /* Faster */
+        }
+
+        .star-layer-3 {
+            background-image: radial-gradient(1px 1px at 5% 50%, var(--star-color-3), rgba(170,170,170,0)),
+                            radial-gradient(1px 1px at 60% 20%, var(--star-color-3), rgba(170,170,170,0)),
+                            radial-gradient(1px 1px at 20% 70%, var(--star-color-3), rgba(170,170,170,0)),
+                            radial-gradient(1px 1px at 80% 90%, var(--star-color-3), rgba(170,170,170,0)),
+                            radial-gradient(1px 1px at 30% 30%, var(--star-color-3), rgba(170,170,170,0));
+            background-size: 200px 200px;
+            animation-name: move-stars-3;
+            animation-duration: 40s; /* Faster */
+        }
+
+        @keyframes move-stars-1 {
+            from { background-position: 0 0; }
+            to { background-position: 300px 300px; }
+        }
+        @keyframes move-stars-2 {
+            from { background-position: 0 0; }
+            to { background-position: -250px -250px; }
+        }
+        @keyframes move-stars-3 {
+            from { background-position: 0 0; }
+            to { background-position: 200px -200px; }
+        }
+
+
+        /* Work Experience specific styling */
+        .work-experience-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* To push date to the right */
+            margin-bottom: 1.5rem; /* Spacing between items */
+            padding-bottom: 1.5rem; /* Padding for the border */
+            border-bottom: 1px solid var(--border-color); /* Line separator */
+            transition: border-color 0.3s ease;
+        }
+        .work-experience-item:last-child {
+            border-bottom: none; /* No border for the last item */
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .work-experience-details {
+            display: flex;
+            align-items: center;
+            flex-grow: 1; /* Allows details to take available space */
+        }
+        .work-experience-text {
+            margin-left: 1rem; /* Space between logo and text */
+        }
+
+        /* Styling for the dynamic description with animation */
+        #dynamic-description-container {
+            position: relative;
+            height: 1.85em; /* Fixed height to prevent layout shifts */
+            overflow: hidden; /* Hide content outside this box */
+            margin-top: 0.5rem; /* mt-2 */
+        }
+
+        #dynamic-description {
+            font-size: 1.25rem; /* text-xl */
+            color: var(--text-primary); /* text-secondary */
+            white-space: nowrap; /* Prevent text from wrapping */
+            text-overflow: ellipsis; /* Add ellipsis if text is too long */
+            display: block; /* Ensure it takes full width and respects overflow */
+            position: absolute; /* Position within the container */
+            width: 100%; /* Take full width of container */
+            top: 0; /* Align to top of container */
+            left: 0; /* Align to left of container */
+            
+            opacity: 0; /* Start hidden */
+            transform: translateY(-100%); /* Start below the container */
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Transition both */
+        }
+
+        #dynamic-description.show-text {
+            opacity: 1;
+            transform: translateY(0); /* Slide to original position */
+        }
+
+        #dynamic-description.hide-text {
+            opacity: 0;
+            transform: translateY(100%); /* Slide up and out */
+        }
+
+        /* Discord Status Dot */
+        .discord-status-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 1.25rem; /* Adjust size as needed */
+            height: 1.25rem;
+            border-radius: 50%;
+            border: 3px solid var(--card-bg); /* Border color matching card background */
+            transition: background-color 0.3s ease;
+            z-index: 10; /* Ensure it's above the avatar */
+            transform: translate(25%, 25%); /* Adjust to position correctly on bottom-right */
+        }
+
+        .discord-status-dot.online {
+            background-color: #3ba55c; /* Discord Green */
+        }
+
+        .discord-status-dot.idle {
+            background-color: #faa61a; /* Discord Orange */
+        }
+
+        .discord-status-dot.dnd {
+            background-color: #ed4245; /* Discord Red */
+        }
+
+        .discord-status-dot.offline {
+            background-color: #747f8d; /* Discord Gray */
+        }
+
+        /* Discord Presence Container */
+        .discord-presence-container {
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+            gap: 0.75rem; /* Space between icon and text */
+            margin-left: auto; /* Push to the right */
+            text-align: left; /* Align text within this container */
+            max-width: 60%; /* Limit width to prevent overflow */
+            flex-shrink: 1; /* Allow shrinking */
+            min-width: 0; /* Allow content to shrink below its intrinsic size */
+        }
+
+        .discord-activity-icon {
+            width: 3rem; /* Larger icon size */
+            height: 3rem;
+            border-radius: 0.5rem; /* Slightly rounded corners for app icons */
+            object-fit: cover;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .discord-activity-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center text vertically */
+            min-width: 0; /* Allow text to shrink */
+        }
+
+        .discord-activity-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .discord-activity-line {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .discord-activity-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Floating Navbar */
+        .navbar {
+            position: fixed;
+            bottom: 1rem; /* Lift from bottom */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            z-index: 50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.75rem 1.5rem; /* Adjusted padding for pill shape */
+            border-radius: 9999px; /* Absolutely rounded */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Stronger shadow for floating effect */
+            background-color: rgba(var(--card-bg-rgb), 0.7); /* Use RGB with transparency */
+            backdrop-filter: blur(8px); /* Reduced blur */
+            -webkit-backdrop-filter: blur(8px); /* For Safari support */
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            max-width: fit-content; /* Make width fit content */
+        }
+        .navbar button {
+            /* Always show text, so no initial fixed width/height */
+            padding: 0.75rem 1.25rem; /* Standard padding for button with text */
+            border-radius: 9999px; /* Circular buttons */
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease; /* Smoother transition */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--border-color);
+            color: var(--text-secondary);
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .navbar button i {
+            font-size: 1.25rem; /* Adjust as needed */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            margin-right: 0.5rem; /* Space between icon and text */
+        }
+
+        .navbar button span {
+            /* Span is always visible, no special max-width/opacity transitions */
+            opacity: 1;
+            white-space: nowrap;
+        }
+
+        .navbar button:hover,
+        .navbar button.active-nav {
+            background-color: var(--accent-color); /* Active/hover background */
+            color: white; /* Active/hover text color */
+        }
+
+        /* Sandwich Menu specific styles (already circular) */
+        .sandwich-menu-container {
+            position: relative;
+            display: inline-block; /* To contain the absolute menu */
+        }
+
+        .sandwich-menu-button {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem; /* Adjusted for icon-only */
+            border-radius: 9999px; /* Ensure it's circular */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+            margin: 0 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .sandwich-menu-button:hover {
+            filter: brightness(1.1);
+        }
+
+        .theme-menu {
+            position: absolute;
+            bottom: calc(100% + 1rem); /* Position above the navbar */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(var(--card-bg-rgb), 0.7); /* Changed to rgba for transparency */
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem; /* More rounded */
+            padding: 1rem;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform-origin: bottom center;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            min-width: 150px; /* Ensure buttons fit */
+            backdrop-filter: blur(8px); /* Reduced blur */
+            -webkit-backdrop-filter: blur(8px); /* For Safari support */
+        }
+
+        .theme-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .theme-menu button {
+            width: 100%;
+            justify-content: flex-start; /* Align text to left in menu */
+            margin: 0; /* Override navbar button margin */
+            padding: 0.75rem 1rem; /* Increased padding for better look */
+            border-radius: 0.75rem; /* Slightly rounded corners for menu buttons */
+            background-color: var(--border-color); /* Default background */
+            color: var(--text-secondary); /* Default text color */
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .theme-menu button:hover {
+            background-color: var(--accent-color); /* Highlight on hover */
+            color: white;
+        }
+
+        /* Loading Overlay Styles */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color); /* Use current theme's background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100; /* Ensure it's on top of everything */
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #loading-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none; /* Disable interaction after fade out */
+        }
+
+        /* Windows 11 style loading spinner */
+        .windows-spinner {
+            display: flex;
+            gap: 8px; /* Space between dots */
+        }
+
+        .windows-spinner .dot {
+            width: 12px;
+            height: 12px;
+            background-color: white; /* White dots for contrast on dark background */
+            border-radius: 50%;
+            opacity: 0; /* Start hidden */
+            animation: dot-pulse 1.5s infinite ease-in-out;
+        }
+
+        .windows-spinner .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .windows-spinner .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .windows-spinner .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        .windows-spinner .dot:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+        .windows-spinner .dot:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes dot-pulse {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body class="oled-theme">
+    <!-- Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="windows-spinner">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- Starry Background Container -->
+    <div class="stars">
+        <div class="star-layer star-layer-1"></div>
+        <div class="star-layer star-layer-2"></div>
+        <div class="star-layer star-layer-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header id="home-section" class="flex flex-col md:flex-row items-center justify-between py-8">
+            <div class="text-left mb-6 md:mb-0">
+                <h1 class="text-5xl font-extrabold flex items-center text-primary">
+                    Hey, I'm BNK
+                    <span class="ml-4 text-4xl animate-wave">👋</span>
+                </h1>
+                <div id="dynamic-description-container">
+                    <p id="dynamic-description" class="text-xl text-secondary"></p>
+                </div>
+                <p class="text-sm text-muted mt-1"><i class="fa-solid fa-clock inline-block mr-1"></i>Time for me: <span id="iran-time"></span></p>
+            </div>
+            <div class="flex items-center">
+                <img src="https://cdn.discordapp.com/avatars/1073628803886239744/79f07364acb1b93da3832351c6b47f5c.webp" alt="BNK Avatar" class="w-28 h-28 rounded-full border-4 border-[var(--accent-color)] shadow-lg">
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section class="my-12">
+            <h2 class="text-2xl font-bold mb-4 text-primary">About</h2>
+            <div class="card">
+                <p class="text-primary">
+                    Just a designer from iran, just out here doing random stuff on the internet with like. I'm working on some projects and working with some servers. I also stream my web channels sometimes.
+                </p>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section class="my-12">
+            <h2 class="text-2xl font-bold mb-4 text-primary">Work Experience</h2>
+            <div class="card">
+                <!-- Experience Item 1 -->
+                <div class="work-experience-item">
+                    <div class="work-experience-details">
+                        <img src="https://cdn.discordapp.com/icons/1220669054155489311/a44a9dfff34266a952d99e8a8cdddec4.png" alt="Speedy Logo" class="w-12 h-12 rounded-full">
+                        <div class="work-experience-text">
+                            <p class="font-semibold text-lg text-primary">Speedy Shop</p>
+                            <p class="text-secondary text-sm">Support</p>
+                        </div>
+                    </div>
+                    <p class="text-secondary text-sm">July 2025 - Present</p>
+                </div>
+                <!-- Experience Item 3 -->
+                <div class="work-experience-item">
+                    <div class="work-experience-details">
+                        <img src="https://cdn.discordapp.com/icons/1395699857288593498/a96698a3bedac875a0e0f10e7d577026.png" alt="IR Scammer Alert Logo" class="w-12 h-12 rounded-full">
+                        <div class="work-experience-text">
+                            <p class="font-semibold text-lg text-primary">IR Scammer Alert</p>
+                            <p class="text-secondary text-sm">Staff</p>
+                        </div>
+                    </div>
+                    <p class="text-secondary text-sm">July 2025 - Present</p>
+                </div>
+                <!-- Experience Item 4 -->
+                <div class="work-experience-item">
+                    <div class="work-experience-details">
+                        <img src="https://bnkd.xyz/tcscp.png" alt="TC Logo" class="w-12 h-12 rounded-full">
+                        <div class="work-experience-text">
+                            <p class="font-semibold text-lg text-primary">Tehran Containment</p>
+                            <p class="text-secondary text-sm">Moderator & Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-secondary text-sm">August 2024 - Present</p>
+                </div>
+                <!-- Experience Item 5 -->
+                <div class="work-experience-item">
+                    <div class="work-experience-details">
+                        <img src="https://webchnl.live/assets/img/channelicons/chroma.png" alt="Chroma Logo" class="w-12 h-12 rounded-full">
+                        <div class="work-experience-text">
+                            <p class="font-semibold text-lg text-primary">Chroma</p>
+                            <p class="text-secondary text-sm">Team</p>
+                        </div>
+                    </div>
+                    <p class="text-secondary text-sm">July 2025 - Present</p>
+                </div>
+                <!-- Experience Item 2 -->
+                <div class="work-experience-item">
+                    <div class="work-experience-details">
+                        <img src="https://bnkd.xyz/rp.png" alt="RolePixel Logo" class="w-12 h-12 rounded-full">
+                        <div class="work-experience-text">
+                            <p class="font-semibold text-lg text-primary">RolePixel</p>
+                            <p class="text-secondary text-sm">Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-secondary text-sm">September 2023 - Discontinued</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects-section" class="my-12 text-center">
+            <span class="tag text-xs px-3 py-1 mb-4 inline-block">Projects</span>
+            <h2 class="section-title">Check out my latest work</h2>
+            <p class="text-secondary mt-4 mb-8">I've worked on some small projects. Here are a few of my favorites.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1 -->
+                <div class="card hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out">
+                    <img src="https://placehold.co/400x200/4a4a4a/FFFFFF?text=Project+Image+1" alt="Project Image" class="w-full h-48 object-cover rounded-xl mb-4 border border-[var(--border-color)]">
+                    <h3 class="font-semibold text-xl mb-2 text-primary">Foyal Services</h3>
+                    <p class="text-secondary text-sm mb-2">December 2024 - 2025</p>
+                    <p class="text-primary text-sm mb-4">A website commissioned by a friend, a website for a discord bot and other services. :)</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag px-3 py-1">TypeScript</span>
+                        <span class="tag px-3 py-1">React</span>
+                        <span class="tag px-3 py-1">Tailwind</span>
+                        <span class="tag px-3 py-1">Next.js</span>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="card hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out">
+                    <img src="https://placehold.co/400x200/4a4a4a/FFFFFF?text=Project+Image+2" alt="Project Image" class="w-full h-48 object-cover rounded-xl mb-4 border border-[var(--border-color)]">
+                    <h3 class="font-semibold text-xl mb-2 text-primary">IRIS Ranked BW</h3>
+                    <p class="text-secondary text-sm mb-2">January 2025</p>
+                    <p class="text-primary text-sm mb-4">A website I made for an Iranian ranked bedwars league. :)</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag px-3 py-1">React</span>
+                        <span class="tag px-3 py-1">Next.js</span>
+                        <span class="tag px-3 py-1">Tailwind</span>
+                        <span class="tag px-3 py-1">TypeScript</span>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="card col-span-1 md:col-span-2 hover:scale-105 hover:shadow-xl transition-all duration-300 ease-in-out">
+                    <img src="https://placehold.co/800x200/4a4a4a/FFFFFF?text=Project+Image+3" alt="Project Image" class="w-full h-48 object-cover rounded-xl mb-4 border border-[var(--border-color)]">
+                    <h3 class="font-semibold text-xl mb-2 text-primary">Femmie</h3>
+                    <p class="text-secondary text-sm mb-2">November 2024 - Present</p>
+                    <p class="text-primary text-sm mb-4">A discord bot with a lot of features.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag px-3 py-1">TypeScript</span>
+                        <span class="tag px-3 py-1">Discord.js</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hardware Section -->
+        <section id="hardware-section" class="my-12 text-center">
+            <span class="tag text-xs px-3 py-1 mb-4 inline-block">Hardware</span>
+            <h2 class="section-title">This is my setup!</h2>
+            <p class="text-secondary mt-4 mb-8">yeah... it sucks :(</p>
+
+            <div class="card grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold text-lg mb-4 flex items-center text-primary">
+                        <i class="fa-solid fa-microchip w-5 h-5 mr-2 text-[var(--accent-color)]"></i>
+                        Specs
+                    </h3>
+                    <ul class="text-left text-primary space-y-2">
+                        <li><i class="fa-solid fa-microchip inline-block mr-1"></i> <span class="font-medium">CPU:</span> i7-10750H @ 2.60MHz</li>
+                        <li><i class="fa-solid fa-memory inline-block mr-1"></i> <span class="font-medium">GPU:</span> GeForce GTX 1650 Ti</li>
+                        <li><i class="fa-solid fa-memory inline-block mr-1"></i> <span class="font-medium">RAM:</span> 16GB DDR4</li>
+                        <li><i class="fa-solid fa-hard-drive inline-block mr-1"></i> <span class="font-medium">Storage 1:</span> 512GB SKHynix SSD</li>
+                        <li><i class="fa-solid fa-hard-drive inline-block mr-1"></i> <span class="font-medium">Storage 2:</span> 1TB Western Digital HDD</li>
+                        <li><i class="fa-brands fa-windows inline-block mr-1"></i> <span class="font-medium">Operating System:</span> Windows 11 Core</li>
+                        <li><i class="fa-brands fa-fedora inline-block mr-1"></i> <span class="font-medium">Operating System:</span> Fedora 42</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg mb-4 flex items-center text-primary">
+                        <i class="fa-solid fa-headset w-5 h-5 mr-2 text-[var(--accent-color)]"></i>
+                        Peripherals
+                    </h3>
+                    <ul class="text-left text-primary space-y-2">
+                        <li><i class="fa-solid fa-gamepad inline-block mr-1"></i> <span class="font-medium">Console:</span> Xbox One S</li>
+                        <li><i class="fa-solid fa-volume-high inline-block mr-1"></i> <span class="font-medium">Speaker:</span> Microlab Superbass M-560</li>
+                        <li><i class="fa-solid fa-mouse inline-block mr-1"></i> <span class="font-medium">Mouse:</span> Prodo Gaming PDX225</li>
+                        <li><i class="fa-solid fa-keyboard inline-block mr-1"></i> <span class="font-medium">Keyboard:</span> </i>Prodo Gaming PDX225</li>
+                        <li><i class="fa-solid fa-display inline-block mr-1"></i> <span class="font-medium">Monitor:</span> Laptop Display (15.6" 120Hz)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Socials Section -->
+        <section id="socials-section" class="my-12 text-center">
+            <span class="tag text-xs px-3 py-1 mb-4 inline-block">Socials</span>
+            <h2 class="section-title">Wanna get in touch?</h2>
+            <p class="text-secondary mt-4 mb-8">I'm always open to new connections, so if you'd like to chat, I'd love to hear from you!</p>
+
+            <div class="card mb-8">
+                <div class="flex flex-col md:flex-row items-center justify-center md:justify-start mb-4">
+                    <div class="relative flex-shrink-0 mr-4"> <!-- Container for avatar and status dot -->
+                        <img src="https://cdn.discordapp.com/avatars/1073628803886239744/79f07364acb1b93da3832351c6b47f5c.webp" alt="BNK Avatar" class="w-16 h-16 rounded-full border-2 border-[var(--accent-color)] shadow-lg">
+                        <div id="discord-status-dot" class="discord-status-dot"></div>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start md:mr-auto"> <!-- Name and pronouns -->
+                        <h3 class="font-semibold text-xl text-primary mt-2 md:mt-0">BNK</h3>
+                        <span class="text-muted">(he/him)</span>
+                    </div>
+                    <!-- Discord Presence Display -->
+                    <div id="discord-presence-display" class="discord-presence-container mt-4 md:mt-0">
+                        <!-- Content will be dynamically inserted here by JavaScript -->
+                    </div>
+                </div>
+                <div class="flex justify-center flex-wrap gap-4 text-2xl">
+                    <a href="#" class="icon-link"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="icon-link"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="text-center text-muted text-sm py-8">
+            <div class="flex justify-center items-center gap-4 mb-4">
+                <span class="tag">Built with</span>
+                <img src="https://www.drupal.org/files/project-images/nextjs-icon-dark-background.png" alt="Next.js" class="w-8 h-8 rounded-full">
+                <img src="https://www.datocms-assets.com/148875/1739884977-typescript.png" alt="TypeScript" class="w-8 h-8 rounded-full">
+                <img src="https://pbs.twimg.com/profile_images/1730334391501488129/G0R0sjHH_400x400.jpg" alt="Tailwind CSS" class="w-8 h-8 rounded-full">
+            </div>
+            <p>&copy; 2025 BNK. All rights reserved.</p>
+            <div class="flex justify-center gap-4 mt-4 text-xl">
+                <a href="#" class="icon-link"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="icon-link"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="icon-link"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="icon-link"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Floating Navbar with Sandwich Menu for Themes -->
+    <nav class="navbar">
+        <div class="flex items-center space-x-2"> <!-- Container for nav buttons -->
+            <button class="nav-btn" data-target="home-section">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-btn" data-target="projects-section">
+                <i class="fa-solid fa-folder"></i>
+                <span>Projects</span>
+            </button>
+            <button class="nav-btn" data-target="hardware-section">
+                <i class="fa-solid fa-computer"></i>
+                <span>Hardware</span>
+            </button>
+            <button class="nav-btn" data-target="socials-section">
+                <i class="fa-solid fa-users"></i>
+                <span>Socials</span>
+            </button>
+        </div>
+        <div class="sandwich-menu-container">
+            <button id="sandwichMenuBtn" class="sandwich-menu-button">
+                <i class="fa-solid fa-palette w-6 h-6"></i>
+            </button>
+            <div id="themeMenu" class="theme-menu">
+                <button class="theme-btn" data-theme="oled-theme">
+                    <i class="fa-solid fa-desktop w-5 h-5"></i>
+                    OLED
+                </button>
+                <button class="theme-btn" data-theme="dark-theme">
+                    <i class="fa-solid fa-moon w-5 h-5"></i>
+                    Dark
+                </button>
+                <button class="theme-btn" data-theme="light-theme">
+                    <i class="fa-solid fa-sun w-5 h-5"></i>
+                    Light
+                </button>
+                <button class="theme-btn" data-theme="coffee-theme">
+                    <i class="fa-solid fa-mug-hot w-5 h-5"></i>
+                    Coffee
+                </button>
+                <button class="theme-btn" data-theme="forest-theme">
+                    <i class="fa-solid fa-tree w-5 h-5"></i>
+                    Forest
+                </button>
+                <button class="theme-btn" data-theme="ocean-theme">
+                    <i class="fa-solid fa-water w-5 h-5"></i>
+                    Ocean
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // Theme Toggle Logic
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const sandwichMenuBtn = document.getElementById('sandwichMenuBtn');
+        const themeMenu = document.getElementById('themeMenu');
+        const navButtons = document.querySelectorAll('.nav-btn');
+
+        // Function to set theme
+        function setTheme(theme) {
+            document.body.className = ''; // Remove all existing theme classes
+            document.body.classList.add(theme);
+            localStorage.setItem('theme', theme); // Save theme preference
+
+            // Update active state of theme buttons
+            themeButtons.forEach(button => {
+                if (button.dataset.theme === theme) {
+                    button.classList.add('active-theme');
+                } else {
+                    button.classList.remove('active-theme');
+                }
+            });
+        }
+
+        // Function to update Iran time
+        function updateIranTime() {
+            const now = new Date();
+            const options = {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true,
+                timeZone: 'Asia/Tehran'
+            };
+            const iranTime = new Intl.DateTimeFormat('en-US', options).format(now);
+            document.getElementById('iran-time').textContent = iranTime;
+        }
+
+        // Check for saved theme preference on load
+        const savedTheme = localStorage.getItem('theme') || 'oled-theme'; // Default to oled-theme
+        setTheme(savedTheme);
+
+        // Toggle sandwich menu visibility
+        sandwichMenuBtn.addEventListener('click', () => {
+            themeMenu.classList.toggle('show');
+        });
+
+        // Close menu if clicked outside
+        document.addEventListener('click', (event) => {
+            if (!themeMenu.contains(event.target) && !sandwichMenuBtn.contains(event.target)) {
+                themeMenu.classList.remove('show');
+            }
+        });
+
+        // Add event listeners to all theme buttons inside the menu
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const newTheme = button.dataset.theme;
+                setTheme(newTheme);
+                themeMenu.classList.remove('show'); // Close menu after selection
+            });
+        });
+
+        // Smooth scrolling for navigation buttons
+        navButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const targetId = event.currentTarget.dataset.target;
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    // For home-section (header), scroll to top of document
+                    if (targetId === 'home-section') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+
+                // Update active state of navigation buttons
+                navButtons.forEach(btn => btn.classList.remove('active-nav'));
+                event.currentTarget.classList.add('active-nav');
+            });
+        });
+
+
+        // Initial call to display time immediately
+        updateIranTime();
+        // Update time every second
+        setInterval(updateIranTime, 1000);
+
+        // Loading animation logic
+        window.addEventListener('load', () => {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            setTimeout(() => {
+                loadingOverlay.classList.add('fade-out');
+            }, 1500); // Fade out after 1.5 seconds
+
+            // Set initial active nav button based on current scroll position after load
+            updateActiveNavButton();
+        });
+
+        // Intersection Observer for active navigation
+        const sections = document.querySelectorAll('section[id], header[id]'); // Select all sections and the header with an ID
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: "-50% 0px -50% 0px", // Trigger when the middle of the section is in the middle of the viewport
+            threshold: 0 // As soon as any part of the target enters the root
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentSectionId = entry.target.id;
+                    navButtons.forEach(link => {
+                        link.classList.remove('active-nav');
+                        if (link.dataset.target === currentSectionId) {
+                            link.classList.add('active-nav');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Function to manually update active nav button (e.g., on initial load)
+        function updateActiveNavButton() {
+            let activeSectionFound = false;
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                // Check if the section is at least partially in the viewport
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    navButtons.forEach(link => {
+                        if (link.dataset.target === section.id) {
+                            link.classList.add('active-nav');
+                        } else {
+                            link.classList.remove('active-nav');
+                        }
+                    });
+                    activeSectionFound = true;
+                }
+            });
+
+            // If no specific section is in the middle, default to home if at the very top
+            if (!activeSectionFound && window.scrollY < window.innerHeight / 4) { // Adjust threshold as needed
+                navButtons.forEach(link => {
+                    if (link.dataset.target === 'home-section') {
+                        link.classList.add('active-nav');
+                    } else {
+                        link.classList.remove('active-nav');
+                    }
+                });
+            }
+        }
+
+        // Listen for scroll events to update active nav button more frequently (in case IntersectionObserver is not enough for rapid scrolling)
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateActiveNavButton, 100); // Debounce for performance
+        });
+
+        // Dynamic Description Text Logic
+        const descriptionElement = document.getElementById('dynamic-description');
+        const phrases = [
+            "Designer",
+            "Linux user",
+            "Learning new things",
+            "Passionate about open source",
+            "Web Channel maker"
+        ];
+        let currentPhraseIndex = 0;
+
+        function updateDescriptionText() {
+            // Start the exit animation
+            descriptionElement.classList.remove('show-text');
+            descriptionElement.classList.add('hide-text');
+
+            // After the exit animation completes, change text and start entry animation
+            setTimeout(() => {
+                descriptionElement.textContent = phrases[currentPhraseIndex];
+                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+
+                // Remove hide-text and add show-text to trigger new entry animation
+                descriptionElement.classList.remove('hide-text');
+                descriptionElement.classList.add('show-text');
+            }, 500); // This timeout should match the CSS transition duration for opacity/transform
+        }
+
+        // Initial display (without animation)
+        descriptionElement.textContent = phrases[currentPhraseIndex];
+        descriptionElement.classList.add('show-text'); // Show the first text immediately
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+
+        // Change text every 7.5 seconds
+        setInterval(updateDescriptionText, 7500);
+
+        // Discord Status and Activity Logic
+        const discordId = '1073628803886239744';
+        const discordStatusDot = document.getElementById('discord-status-dot');
+        const discordPresenceDisplay = document.getElementById('discord-presence-display');
+
+        function formatTimeAgo(timestamp) {
+            if (!timestamp) return '';
+            const now = Date.now();
+            const started = new Date(timestamp);
+            const diffSeconds = Math.floor((now - started) / 1000);
+
+            const hours = Math.floor(diffSeconds / 3600);
+            const minutes = Math.floor((diffSeconds % 3600) / 60);
+            const seconds = diffSeconds % 60;
+
+            let timeString = '';
+            if (hours > 0) timeString += `${hours}h `;
+            if (minutes > 0) timeString += `${minutes}m `;
+            timeString += `${seconds}s`;
+            return timeString.trim();
+        }
+
+        async function fetchDiscordStatus() {
+            try {
+                const response = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
+                const data = await response.json();
+                console.log('Lanyard API Response:', data); // Log the full response for debugging
+
+                if (data.success && data.data) {
+                    const status = data.data.discord_status; // online, idle, dnd, offline
+                    // Update status dot
+                    discordStatusDot.classList.remove('online', 'idle', 'dnd', 'offline');
+                    discordStatusDot.classList.add(status);
+
+                    // Clear previous presence display
+                    discordPresenceDisplay.innerHTML = '';
+
+                    // Update Discord activity
+                    if (data.data.activities && data.data.activities.length > 0) {
+                        const firstActivity = data.data.activities[0];
+
+                        const activityIcon = document.createElement('img');
+                        activityIcon.classList.add('discord-activity-icon');
+                        
+                        let imageUrl = '';
+                        let assetKey = firstActivity.assets?.large_image || firstActivity.assets?.small_image;
+
+                        if (firstActivity.name === "Spotify" && assetKey && assetKey.startsWith('spotify:')) {
+                            // Spotify asset
+                            const spotifyId = assetKey.replace('spotify:', '');
+                            imageUrl = `https://i.scdn.co/image/${spotifyId}`;
+                        } else if (firstActivity.name && firstActivity.name.length > 0) {
+                            // Placeholder image with the first letter of the activity name
+                            const firstLetter = firstActivity.name.charAt(0).toUpperCase();
+                            // Use a dark background and white text for contrast
+                            imageUrl = `https://placehold.co/48x48/4a4a4a/FFFFFF?text=${firstLetter}`; // Increased size to 48x48
+                        }
+                        
+                        // Only add the image element if a valid imageUrl is found
+                        if (imageUrl) {
+                            activityIcon.src = imageUrl;
+                            activityIcon.alt = firstActivity.assets?.large_text || firstActivity.assets?.small_text || firstActivity.name || 'Activity Icon';
+                            // Add onerror to fallback to a generic placeholder if the image fails to load
+                            activityIcon.onerror = () => {
+                                activityIcon.src = 'https://placehold.co/48x48/4a4a4a/FFFFFF?text=App'; // Fallback to generic "App"
+                            };
+                            discordPresenceDisplay.appendChild(activityIcon);
+                        }
+
+                        const activityDetailsDiv = document.createElement('div');
+                        activityDetailsDiv.classList.add('discord-activity-details');
+
+                        const activityName = document.createElement('div');
+                        activityName.classList.add('discord-activity-name');
+                        // MODIFIED: Show song title for Spotify, otherwise activity name
+                        if (firstActivity.name === "Spotify" && firstActivity.details) {
+                            activityName.textContent = firstActivity.details;
+                        } else {
+                            activityName.textContent = firstActivity.name;
+                        }
+
+                        const activityDetails = document.createElement('div');
+                        activityDetails.classList.add('discord-activity-line');
+                        // For Spotify, the 'state' usually contains the artist, so we show that here.
+                        // For other activities, 'details' is fine.
+                        if (firstActivity.name === "Spotify" && firstActivity.state) {
+                            activityDetails.textContent = `by ${firstActivity.state}`;
+                        } else {
+                            activityDetails.textContent = firstActivity.details || '';
+                        }
+
+
+                        const activityState = document.createElement('div');
+                        activityState.classList.add('discord-activity-line');
+                        // Only show activity state if it's not Spotify (as Spotify state is handled above)
+                        if (firstActivity.name !== "Spotify") {
+                            activityState.textContent = firstActivity.state || '';
+                        } else {
+                            activityState.textContent = ''; // Clear if Spotify
+                        }
+
+
+                        const activityTime = document.createElement('div');
+                        activityTime.classList.add('discord-activity-time');
+                        if (firstActivity.timestamps && firstActivity.timestamps.start) {
+                            // Update time every second if activity is active
+                            const updateTime = () => {
+                                activityTime.textContent = formatTimeAgo(firstActivity.timestamps.start);
+                            };
+                            updateTime(); // Initial call
+                            // Clear previous interval if any, then set new one
+                            if (discordPresenceDisplay.dataset.intervalId) {
+                                clearInterval(parseInt(discordPresenceDisplay.dataset.intervalId));
+                            }
+                            const intervalId = setInterval(updateTime, 1000);
+                            discordPresenceDisplay.dataset.intervalId = intervalId; // Store interval ID
+                        } else {
+                            activityTime.textContent = '';
+                            // Clear interval if no active timestamp
+                            if (discordPresenceDisplay.dataset.intervalId) {
+                                clearInterval(parseInt(discordPresenceDisplay.dataset.intervalId));
+                                delete discordPresenceDisplay.dataset.intervalId;
+                            }
+                        }
+
+                        activityDetailsDiv.appendChild(activityName);
+                        if (activityDetails.textContent) activityDetailsDiv.appendChild(activityDetails); // Only append if it has content
+                        if (activityState.textContent) activityDetailsDiv.appendChild(activityState); // Only append if it has content
+                        if (firstActivity.timestamps && firstActivity.timestamps.start) activityDetailsDiv.appendChild(activityTime);
+
+                        discordPresenceDisplay.appendChild(activityDetailsDiv);
+                    } else {
+                        // Clear interval if no activity
+                        if (discordPresenceDisplay.dataset.intervalId) {
+                            clearInterval(parseInt(discordPresenceDisplay.dataset.intervalId));
+                            delete discordPresenceDisplay.dataset.intervalId;
+                        }
+                    }
+
+                } else {
+                    console.error('Failed to fetch Discord status or data is missing in response:', data);
+                    // Default to offline and clear activity if status cannot be fetched or is missing
+                    discordStatusDot.classList.remove('online', 'idle', 'dnd', 'offline');
+                    discordStatusDot.classList.add('offline');
+                    discordPresenceDisplay.innerHTML = ''; // Clear presence display
+                    // Clear interval if no activity
+                    if (discordPresenceDisplay.dataset.intervalId) {
+                        clearInterval(parseInt(discordPresenceDisplay.dataset.intervalId));
+                        delete discordPresenceDisplay.dataset.intervalId;
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching Discord status:', error);
+                // Default to offline and clear activity on network error
+                discordStatusDot.classList.remove('online', 'idle', 'dnd', 'offline');
+                discordStatusDot.classList.add('offline');
+                discordPresenceDisplay.innerHTML = ''; // Clear presence display
+                // Clear interval if no activity
+                if (discordPresenceDisplay.dataset.intervalId) {
+                    clearInterval(parseInt(discordPresenceDisplay.dataset.intervalId));
+                    delete discordPresenceDisplay.dataset.intervalId;
+                }
+            }
+        }
+
+        // Fetch status initially
+        fetchDiscordStatus();
+        // Fetch status every 15 seconds (Lanyard recommends 15-30 seconds interval)
+        setInterval(fetchDiscordStatus, 15000);
+    </script>
+</body>
+</html>
