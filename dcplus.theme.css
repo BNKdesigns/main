@@ -1,30 +1,39 @@
 /**
- * @name Discord+
+ * @name Discord+ OLED
  * @version 2.1.3
  * @author BNK
  * @authorLink https://bnkd.xyz
  * @description the theme i personally use
- * @source https://github.com/bnkd/main/blob/main/dcplus.theme.css
- * @invite Mp2mUbYxDN
+ * @source https://github.com/BNKdesigns/main/blob/main/dcplus.theme.css
 */
 @import url('https://mwittrien.github.io/BetterDiscordAddons/Themes/DiscordRecolor/DiscordRecolor.css');
 @import url("https://gibbu.github.io/BetterDiscord-Themes/addons/windows-titlebar.css");
-@import url('https://kckarnige.is-a.dev/improved-ui/base.css');
+@import url('https://fonts.googleapis.com/css2?family=Vazir');
+@import url('https://codedotspectra.github.io/themes/core/custom-font.css');
+@import url("https://discordstyles.github.io/HorizontalServerList/dist/HorizontalServerList.css");
 :root {
+  --accentcolor: 114,137,218;
+  --accentcolor2: 255,115,250;
+  --linkcolor: 0,176,244;
+  --mentioncolor: 250,166,26;
+  --textbrightest: 255,255,255;
+  --textbrighter: 222,222,222;
+  --textbright: 185,185,185;
+  --textdark: 140,140,140;
+  --textdarker: 115,115,115;
+  --textdarkest: 80,80,80;
+  --font: 0;
+  --backgroundaccent: 22,22,22;
+  --backgroundprimary: 0,0,0;
+  --backgroundsecondary: 0,0,0;
+  --backgroundsecondaryalt: 27,27,27;
+  --backgroundtertiary: 10,10,10;
+  --backgroundfloating: 12,12,12;
   --settingsicons: 0;
   --HSL-server-icon-size: 50px;  /* Size of the server icons | DEFAULT: 40px */
   --HSL-server-spacing: 10px;  /* Spacing between each server icon | DEFAULT: 10px */
   --HSL-server-direction: column; /* Direct of the server list. | Options: column, column-reverse | DEFAULT: column */
-  --main-color: var(--bandaged-blue); 
-  --ping-color: #f04747fe;
-  --selector-color: var(--main-color);
-  --wordmark-text-color: #72767d;
-  --wordmark-text: "ConceptCord"; /* This should only be text (Example: Lightcord, Binguscord, BetterDiscord, Discord 2, I think you get it) */
-  --tooltip-color: var(--main-color);
-  --tooltip-text-color: #fff;
-  --default-folder-color: #7289DA;
-  --home-icon: var(--classic-clyde); /* '--rebrand-clyde' or '--classic-clyde' */
-  --accent: var(--main-color);
+  --customFont: 'Urbanist';
 }
 
 
@@ -49,11 +58,7 @@
 }
 /* title bar color */
 .bg-1QIAus {
-<<<<<<< HEAD:ConceptCord.css
-  background-color: #292b2f;
-=======
   background-color: #292B2F!important;
->>>>>>> 152711edafb0aa61448621f7d023ca6f6dcc43b1:ConceptCord.theme.css
 }
 .interactive-1vLZ_I.interactive-iyXY_x.linkButton-2NshQj  {
   background-color: rgb(65, 64, 70);
@@ -126,8 +131,6 @@ body #app-mount .guilds-2JjMmN [class*=pill] span {
 .panels-3wFtMD {
   background: transparent;
 }
-<<<<<<< Patch-2
-=======
 /*transparent scrollbar*/
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track,
@@ -140,7 +143,6 @@ body #app-mount .guilds-2JjMmN [class*=pill] span {
   background-clip: content-box !important;
   background: transparent !important;
 }
->>>>>>> main
 .interactive-1vLZ_I.interactive-iyXY_x.linkButton-2NshQj  {
   background-color: rgb(65, 64, 70);
   background-size: 100%;
@@ -333,7 +335,4 @@ body #app-mount .guilds-2JjMmN [class*=pill] span {
   background: transparent;
   transform: rotate(180deg)!important;
   transition: .5s;
-}
-.messagesWrapper-RpOMA3, .scrollerContent-2SW0kQ{
-    display:flow-root!important;
 }
