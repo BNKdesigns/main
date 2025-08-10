@@ -7,10 +7,10 @@
  * @source https://github.com/BNKdesigns/main/blob/main/dcplus.theme.css
 */
 @import url('https://mwittrien.github.io/BetterDiscordAddons/Themes/DiscordRecolor/DiscordRecolor.css');
-@import url("https://gibbu.github.io/BetterDiscord-Themes/addons/windows-titlebar.css");
+@import url("https://discordstyles.github.io/Addons/windows-titlebar.css");
 @import url('https://fonts.googleapis.com/css2?family=Vazir');
 @import url('https://codedotspectra.github.io/themes/core/custom-font.css');
-@import url("https://discordstyles.github.io/HorizontalServerList/dist/HorizontalServerList.css");
+@import url("https://raw.githubusercontent.com/DiscordStyles/HorizontalServerList/deploy/HorizontalServerList.theme.css");
 :root {
   --accentcolor: 114,137,218;
   --accentcolor2: 255,115,250;
